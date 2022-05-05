@@ -1,0 +1,6 @@
+/.idea
+../DZ_19_Lesson/dao/__pycache__
+helpers/__pycache__
+../DZ_19_Lesson/views/__pycache__
+.DS_Store
+__pycache__
