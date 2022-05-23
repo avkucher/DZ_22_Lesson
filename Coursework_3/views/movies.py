@@ -13,7 +13,7 @@ class MoviesView(Resource):
         director = request.args.get("director_id")
         genre = request.args.get("genre_id")
         year = request.args.get("year")
-        paginator = int(request.args.get("page"))
+        paginator = request.args.get("page")
         status = request.args.get("status")
 
         filters = {

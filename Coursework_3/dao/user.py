@@ -17,8 +17,21 @@ class UserDAO:
         self.session.commit()
         return ent
 
+    def update(self, data):
+        user = self.get_by_email(data.get("email"))
+        user.name = data.get("name")
+        user.surname = data.get("surname")
+        user.favorite_genre = data.get("favorite_genre")
 
+        self.session.add(user)
+        self.session.commit()
 
+    def update_password(self, data):
+        user = self.get_by_email(data.get("email"))
+        user.password = data.get("password")
+
+        self.session.add(user)
+        self.session.commit()
 
 
     # def get_one(self, uid):
@@ -48,4 +61,3 @@ class UserDAO:
     #
     #     self.session.add(user)
     #     self.session.commit()
-        

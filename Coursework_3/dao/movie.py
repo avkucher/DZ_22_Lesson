@@ -1,3 +1,4 @@
+import page as page
 from sqlalchemy import desc
 
 from dao.model.movie import Movie
@@ -20,7 +21,8 @@ class MovieDAO:
         # if "year" in filters:
         #     t = t.filter(Movie.year == filters.get("year"))
         # return t.all()
-        return self.session.query(Movie).all()
+        per_page = 12
+        return self.session.query(Movie).order_by(Movie.year.desc()).paginate(page, per_page, error_out=False)
 
     def get_by_director_id(self, val):
         return self.session.query(Movie).filter(Movie.director_id == val).all()
