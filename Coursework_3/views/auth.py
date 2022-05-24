@@ -19,9 +19,9 @@ class AuthView(Resource):
         user = user_service.create_new_user(email=req_json.get("email"),
                                             password=password_hash)
 
-        token = user_service.encode_auth_token(user.email, str(user.password))
+        # token = user_service.encode_auth_token(user.email, str(user.password))
 
-        return json.dumps(token), 201
+        return "Регистрация прошла успешно"  # json.dumps(token), 201
 
 
 @auth_ns.route("/login")
