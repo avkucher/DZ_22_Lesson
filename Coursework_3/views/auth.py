@@ -1,4 +1,4 @@
-from flask import request, abort, json
+from flask import request, abort, json, jsonify
 from flask_restx import Resource, Namespace
 import utils
 # from implemented import auth_service
@@ -8,7 +8,7 @@ from implemented import user_service
 auth_ns = Namespace('auth')
 
 
-@auth_ns.route("/register")
+@auth_ns.route("/register/")
 class AuthView(Resource):
 
     def post(self):
@@ -24,7 +24,7 @@ class AuthView(Resource):
         return "Регистрация прошла успешно"  # json.dumps(token), 201
 
 
-@auth_ns.route("/login")
+@auth_ns.route("/login/")
 class AuthView(Resource):
     def post(self):
         req_json = request.json
@@ -34,7 +34,17 @@ class AuthView(Resource):
         new_password_hash = user_service.make_user_password_hash(new_password)
         if password == new_password_hash:
             token = user_service.encode_auth_token(user.email, str(user.password))
-            return json.dumps(token), 200
+            access_token = str(token["access_token"])
+            refresh_token = str(token["refresh_token"])
+            return {"access_token": access_token, "refresh_token": refresh_token}, 201
+            #     "refresh_token": str(token.refresh_token\)
+            # result = {
+            #     "access_token": str(token.access_token\),
+            #     "refresh_token": str(token.refresh_token\)
+            # }
+            # return jsonify(result), 201
+
+            # return json.dumps(token), 201
 
     def put(self):
         req_json = request.json
@@ -42,7 +52,7 @@ class AuthView(Resource):
 
         tokens = user_service.approve_refresh_token(token)
 
-        return tokens, 201
+        return json.dumps(tokens), 201
 
 
 

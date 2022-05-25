@@ -1,4 +1,4 @@
-from flask import request, json
+from flask import request, json, jsonify
 from flask_restx import Resource, Namespace
 from dao.model.user import UserSchema
 from implemented import user_service
@@ -10,7 +10,7 @@ user_ns = Namespace("user")
 @user_ns.route("/")
 class UserView(Resource):
 
-    @auth_required              # регистрация по email и password
+    @auth_required  # регистрация по email и password
     def get(self):
         data = request.json
         email = data["email"]
@@ -21,18 +21,22 @@ class UserView(Resource):
         # res = UserSchema(many=True).dump(all_users)
         # return res, 200
 
-    @auth_required          #обновление данных пользователя
+    # @auth_required  # обновление данных пользователя
     def patch(self):
         data = request.json
         user_service.update(data)
         email = data["email"]
         user = user_service.get_by_email(email)
-        result = {
-            "name": user.name,
-            "surname": user.surname,
-            "favorite_genre": user.favorite_genre
-        }
-        return json.dumps(result), 200
+        # result = {
+        #         #     "name": user.name,
+        #         #     "surname": user.surname,
+        #         #     "favorite_genre": user.favorite_genre
+        #         # }
+        name = str(user.name),
+        surname = str(user.surname),
+        favorite_genre = str(user.favorite_genre)
+        return {"name": name, "surname": surname,
+                "favorite_genre": favorite_genre}, 201
 
     def post(self):
         req_json = request.json
@@ -44,7 +48,7 @@ class UserView(Resource):
 class UserView(Resource):
 
     @auth_required
-    def put(self):                     # изменение пароля пользователя
+    def put(self):  # изменение пароля пользователя
         req_json = request.json
         other_password = str(req_json.get("password1"))
         password2 = str(req_json.get("password2"))
