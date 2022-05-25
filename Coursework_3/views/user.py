@@ -21,7 +21,7 @@ class UserView(Resource):
         # res = UserSchema(many=True).dump(all_users)
         # return res, 200
 
-    # @auth_required  # обновление данных пользователя
+    @auth_required  # обновление данных пользователя
     def patch(self):
         data = request.json
         user_service.update(data)
