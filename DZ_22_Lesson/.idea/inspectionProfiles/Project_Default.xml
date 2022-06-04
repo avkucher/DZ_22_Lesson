@@ -1,0 +1,30 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="DuplicatedCode" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <Languages>
+        <language minSize="51" name="Python" />
+      </Languages>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="main.flask_sqlalchemy" />
+          <option value="app.routes.user" />
+          <option value="service.auth.get_hash" />
+          <option value="datetime.utcnow" />
+          <option value="jwt.encode" />
+          <option value="service.auth.AuthService.encode" />
+          <option value="jwt.PyJWTError" />
+          <option value="jwt.decode" />
+          <option value="conftest" />
+          <option value="jwt.ExpiredSignatureError" />
+          <option value="jwt.InvalidTokenError" />
+          <option value="int.desc" />
+          <option value="service.user.UserService.hmac" />
+          <option value="part1.practice.bad_smell_envious_func.main.x" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
