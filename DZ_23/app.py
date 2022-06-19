@@ -17,7 +17,6 @@ def perform_query():
         value1 = request.args['value1']
         value2 = request.args['value2']
         file_name = request.args['file_name']
-
     except:
         return BadRequest, 400
 
@@ -31,10 +30,6 @@ def perform_query():
         res = '\n'.join(res)
 
     return app.response_class(res, content_type="text/plain")
-
-
-
-
 # получить параметры query и file_name из request.args, при ошибке вернуть ошибку 400
 # проверить, что файла file_name существует в папке DATA_DIR, при ошибке вернуть ошибку 400
 # с помощью функционального программирования (функций filter, map), итераторов/генераторов сконструировать запрос
