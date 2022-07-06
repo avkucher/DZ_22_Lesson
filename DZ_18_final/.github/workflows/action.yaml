@@ -8,7 +8,10 @@ jobs:
         uses: actions/checkout@v2
       - name: docker build
         run: docker build -t akucher59/flask_app:$GITHUB_REF_NAME-$GITHUB_RUN_ID .
-
+      - name: docker login
+        run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      - name: docker push
+        run: docker push akucher59/flask_app:$GITHUB_REF_NAME-$GITHUB_RUN_ID
 
 
 
