@@ -1,0 +1,8 @@
+version: "3.3"
+
+services:
+  web:
+    image: akucher59/flask_app:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+    ports:
+      - "8000:80"
+    restart: always
